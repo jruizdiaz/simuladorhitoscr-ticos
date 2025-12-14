@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Crisis E-commerce | Proyecto Final</title>
+    <title>Simulador de Crisis E-commerce | Proyecto Final (v1.4.1 Depurado)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; color: #1f2937; }
+        body { font-family: 'Inter', sans-serif; background-color: #f3ff6; color: #1f2937; }
         
         /* Animaciones */
         @keyframes pulse-red {
@@ -38,7 +38,7 @@
             max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; 
             border-top: 1px solid #e2e8f0; margin-top: -1px;
         }
-        .canvas-content.open { max-height: 1000px; padding-top: 1rem; }
+        .canvas-content.open { max-height: 2500px; padding-top: 1rem; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -67,7 +67,7 @@
         <div class="mb-8 text-center sm:text-left">
             <h2 class="text-3xl font-bold text-gray-800">Laboratorio de Crisis</h2>
             <p class="mt-2 text-gray-600 max-w-3xl">
-                Complete el **Digital Strategy Canvas** y elija su modelo de negocio para ejecutar la simulación y recibir un Hito Crítico.
+                Complete el **Digital Strategy Canvas** con métricas de Mercado y Finanzas para simular con datos reales.
             </p>
         </div>
 
@@ -77,17 +77,17 @@
                 
                 <div class="card p-6 border-t-4 border-indigo-500">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                        <span class="mr-2">⚙️</span> Configuración de la empresa.
+                        <span class="mr-2">⚙️</span> Configuración de Agencia
                     </h3>
                     
                     <div class="space-y-4">
                         
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del Tutor/Profesor</label>
-                            <input type="text" id="tutor-name" placeholder="Ej: Pablo Escaf" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del Tutor/Profesor <span class="text-red-500">*</span></label>
+                            <input type="text" id="tutor-name" placeholder="Ej: Dra. García" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Identificador de Grupo</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Identificador de Grupo <span class="text-red-500">*</span></label>
                             <input type="text" id="group-id" placeholder="Ej: GRUPO-A4" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
                         </div>
                         <div>
@@ -103,25 +103,73 @@
                         <div class="border border-gray-300 rounded-lg">
                             <div class="canvas-toggle flex justify-between items-center" onclick="toggleCanvasForm()">
                                 <h4 class="text-sm font-bold text-gray-700 flex items-center">
-                                    <span id="canvas-status-icon" class="mr-2 text-red-500">🔴</span> DIGITAL STRATEGY CANVAS
+                                    <span id="canvas-status-icon" class="mr-2 text-red-500">🔴</span> DIGITAL STRATEGY CANVAS (COMPLETO)
                                 </h4>
                                 <span id="canvas-arrow" class="text-lg transform rotate-0 transition-transform duration-300">▼</span>
                             </div>
                             
                             <div id="canvas-form-content" class="canvas-content p-4">
-                                <p class="text-xs text-gray-500 mb-3">Rellene al menos un detalle por bloque.</p>
-                                <div class="space-y-3">
-                                    <label class="block text-xs font-semibold text-gray-700">1. Audiencia Objetivo (Buyer Persona)</label>
-                                    <textarea id="canvas-audience" class="w-full p-2 border border-gray-300 rounded text-sm" rows="2" placeholder="Describir público primario y Pain Points."></textarea>
+                                <p class="text-xs text-gray-500 mb-3 font-semibold text-indigo-700">Módulos Estratégicos & Financieros</p>
+                                <div class="space-y-4">
                                     
-                                    <label class="block text-xs font-semibold text-gray-700">2. Propuesta de Valor Digital (DVP)</label>
-                                    <textarea id="canvas-value" class="w-full p-2 border border-gray-300 rounded text-sm" rows="2" placeholder="Valor único que ofrece tu canal digital."></textarea>
+                                    <div class="p-3 bg-gray-50 rounded-md border border-gray-200 space-y-2">
+                                        <label class="block text-xs font-bold text-indigo-700">MÓDULO ESTRATÉGICO</label>
+                                        <label class="block text-xs font-semibold text-gray-700">1. Audiencia Objetivo (Buyer Persona) <span class="text-red-500">*</span></label>
+                                        <textarea id="canvas-audience" class="w-full p-2 border border-gray-300 rounded text-sm" rows="1" placeholder="Público primario y Pain Points."></textarea>
+                                        
+                                        <label class="block text-xs font-semibold text-gray-700">2. Propuesta de Valor Digital (DVP) <span class="text-red-500">*</span></label>
+                                        <textarea id="canvas-value" class="w-full p-2 border border-gray-300 rounded text-sm" rows="1" placeholder="Valor único del canal digital."></textarea>
+                                        
+                                        <label class="block text-xs font-semibold text-gray-700">3. Canales Clave</label>
+                                        <input type="text" id="canvas-channels" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: Meta Ads, SEO, E-mail Marketing">
+                                        
+                                        <label class="block text-xs font-semibold text-gray-700">4. Métricas de Éxito (KPIs)</label>
+                                        <input type="text" id="canvas-metrics" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: LTV, CAC, Tasa de Conversión">
+                                    </div>
                                     
-                                    <label class="block text-xs font-semibold text-gray-700">3. Canales Clave</label>
-                                    <input type="text" id="canvas-channels" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: Meta Ads, SEO, E-mail Marketing">
-                                    
-                                    <label class="block text-xs font-semibold text-gray-700">4. Métricas de Éxito (KPIs)</label>
-                                    <input type="text" id="canvas-metrics" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: LTV, CAC, Tasa de Conversión">
+                                    <div class="p-3 bg-gray-50 rounded-md border border-gray-200 space-y-2">
+                                        <label class="block text-xs font-bold text-indigo-700">MÓDULO DE MERCADO</label>
+                                        <label class="block text-xs font-semibold text-gray-700">5. Dimensión TAM SAM SOM ($)</label>
+                                        <input type="text" id="canvas-tam" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: TAM: 10M, SAM: 5M, SOM: 1M">
+                                        
+                                        <label class="block text-xs font-semibold text-gray-700">6. Principales Competidores</label>
+                                        <input type="text" id="canvas-competitors" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: Amazon, TiendaX, MarcaB">
+                                        
+                                        <label class="block text-xs font-semibold text-gray-700">7. PAÍS y AÑOS Proyectados</label>
+                                        <input type="text" id="canvas-projections" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: México - 3 Años">
+                                    </div>
+
+                                    <div class="p-3 bg-gray-50 rounded-md border border-gray-200 space-y-2">
+                                        <label class="block text-xs font-bold text-indigo-700">MÓDULO FINANCIERO (Valores Anuales Proyectados)</label>
+                                        
+                                        <div class="grid grid-cols-2 gap-3">
+                                            <div>
+                                                <label class="block text-xs font-semibold text-gray-700">8. Presupuesto Total Anual ($) <span class="text-red-500">*</span></label>
+                                                <input type="number" id="canvas-budget" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: 50000" min="0">
+                                            </div>
+                                            <div>
+                                                <label class="block text-xs font-semibold text-gray-700">9. Margen Bruto (%) <span class="text-red-500">*</span></label>
+                                                <input type="number" id="canvas-gross-margin" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: 45" min="0" max="100">
+                                            </div>
+                                            <div>
+                                                <label class="block text-xs font-semibold text-gray-700">10. Margen Neto (%)</label>
+                                                <input type="number" id="canvas-net-margin" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: 10" min="0" max="100">
+                                            </div>
+                                            <div>
+                                                <label class="block text-xs font-semibold text-gray-700">11. Punto de Equilibrio ($/Unid)</label>
+                                                <input type="text" id="canvas-break-even" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: $2000 o 500 Unid">
+                                            </div>
+                                        </div>
+
+                                        <label class="block text-xs font-semibold text-gray-700">12. Ingresos Proyectados ($) <span class="text-red-500">*</span></label>
+                                        <input type="number" id="canvas-revenue" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: 200000" min="0">
+
+                                        <label class="block text-xs font-semibold text-gray-700">13. Costos Totales ($)</label>
+                                        <input type="number" id="canvas-costs" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: 150000" min="0">
+
+                                        <label class="block text-xs font-semibold text-gray-700">14. ROI Esperado (%)</label>
+                                        <input type="number" id="canvas-roi" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Ej: 33" min="0">
+                                    </div>
                                     
                                     <button onclick="saveCanvasData()" id="save-canvas-btn" class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded mt-3">
                                         Guardar Canvas y Habilitar Simulación
@@ -161,7 +209,7 @@
                         <div id="state-idle" class="text-center opacity-100 transition-opacity duration-300">
                             <div class="text-6xl mb-4">🖥️</div>
                             <h3 class="text-xl font-bold text-gray-400">Sistema en Espera</h3>
-                            <p class="text-gray-400 mt-2">Complete el Canvas y configure el modelo para iniciar.</p>
+                            <p class="text-gray-400 mt-2">Complete el Canvas Estratégico y Financiero para iniciar.</p>
                         </div>
 
                         <div id="state-loading" class="hidden text-center w-full max-w-md">
@@ -188,23 +236,23 @@
                                     </p>
                             </div>
 
-                            <div class="bg-gray-50 rounded-lg border border-gray-200 p-5 shadow-inner mb-6">
-                                <h4 class="text-sm font-bold text-gray-900 mb-2 flex items-center">
-                                    <span class="bg-indigo-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs mr-2">!</span>
-                                    ACCIÓN REQUERIDA INMEDIATA
+                            <div class="bg-red-50 rounded-lg border border-red-200 p-5 shadow-inner mb-6">
+                                <h4 class="text-sm font-bold text-red-700 mb-2 flex items-center">
+                                    <span class="text-xl mr-2">🚨</span>
+                                    IMPACTO Y PLAZO DE RESOLUCIÓN
                                 </h4>
-                                <p id="result-action" class="text-sm font-medium text-indigo-700">
+                                <p id="result-action" class="text-base font-medium text-red-700 leading-relaxed">
                                     </p>
                             </div>
                             
-                            <div class="bg-red-50 rounded-lg border border-red-200 p-5">
-                                <h4 class="text-sm font-bold text-red-700 mb-3 flex items-center">
+                            <div class="bg-gray-100 rounded-lg border border-gray-200 p-5">
+                                <h4 class="text-sm font-bold text-gray-700 mb-3 flex items-center">
                                     <span class="text-xl mr-2">📧</span>
-                                    EMAIL DE REPORTE AL TUTOR (PLANTILLA)
+                                    REPORTE DE INCIDENTE AL TUTOR
                                 </h4>
-                                <pre id="email-output" class="text-xs bg-red-100 text-red-900 p-3 rounded overflow-x-auto whitespace-pre-wrap"></pre>
-                                <button onclick="copyEmailToClipboard()" class="mt-3 w-full py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-semibold rounded">
-                                    Copiar Email al Portapapeles
+                                <pre id="email-output" class="text-xs bg-white text-gray-900 p-3 rounded overflow-x-auto whitespace-pre-wrap border border-gray-300"></pre>
+                                <button onclick="copyEmailToClipboard()" class="mt-3 w-full py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold rounded">
+                                    Copiar Email al Portapapeles (Enviar a Tutor)
                                 </button>
                             </div>
 
@@ -249,40 +297,95 @@
 
     <footer class="bg-white border-t border-gray-200 mt-auto py-6">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-gray-400">
-            Simulador E-Commerce v1.2 • Basado en Modelos de Negocio Reales - Diseñado por Mg.Lic.Juan Ruíz Díaz para TUCEMD - UTN FRBA - 2025
+            Simulador Educativo v1.4.1 • Depurado
         </div>
     </footer>
 
     <script>
-        // --- DATA BASE: 20 CRITICAL SITUATIONS ---
+        // --- DATA BASE: 20 CRITICAL SITUATIONS (Mantenemos la misma DB con interpolación) ---
         const incidentsDB = {
             'retail': [
-                { title: "El 'Error de Precio' Viral", desc: "Un error en el CSV puso Smart TVs a $5.00. Se vendieron 200 unidades en 15 minutos y las redes arden exigiendo la entrega.", action: "Decidir entre cancelar (crisis PR) o entregar (pérdida masiva). Redactar comunicado oficial." },
-                { title: "Colapso en Hot Sale", desc: "El operador logístico informa demora de 7 días hábiles para envíos '24hs' por saturación. Tienes 500 etiquetas impresas.", action: "Configurar reglas de email marketing automático para contener la ansiedad y ofrecer compensación." },
-                { title: "Suspensión en Marketplace", desc: "Mercado Libre/Amazon pausó tu cuenta principal. La tasa de reclamos llegó al 4% (límite 3%).", action: "Elaborar Plan de Acción y Apelación detallando solución de raíz a los reclamos." },
-                { title: "Quiebre de Stock (Overselling)", desc: "Fallo de sincronización. Vendiste 50 unidades de un producto sin stock. El proveedor repone en 30 días.", action: "Contactar clientes uno a uno, ofrecer devolución inmediata + 20% giftcard." },
-                { title: "Fraude de 'Carding' Masivo", desc: "La pasarela alerta sobre 30 transacciones aprobadas sospechosas con el mismo IP y distintas tarjetas.", action: "Analizar patrones, detener despachos físicos y activar 3D Secure." }
+                { 
+                    title: "Colapso Logístico y Viralización Negativa", 
+                    desc: "La campaña de lanzamiento superó las proyecciones (Ingresos $${revenue}) pero la Logística subcontratada colapsó. La métrica de 'Tiempos de Entrega' se triplicó, y en redes sociales los usuarios (Audiencia: ${audience}) están usando el hashtag #FraudeEntrega. Esto pone en riesgo la Propuesta de Valor (DVP: ${value}) basada en la inmediatez.", 
+                    points: [
+                        "Comunicación y Manejo de Crisis: Detener la viralización negativa y restaurar la confianza del cliente.",
+                        "Operaciones y Logística: Buscar soluciones inmediatas para los pedidos varados y reducir el tiempo de despacho.",
+                        "Finanzas y Presupuesto: Evaluar el costo de compensaciones/devoluciones contra el Margen Neto (${netMargin}%)."
+                    ], 
+                    timeframe: "48 horas." 
+                },
+                { 
+                    title: "Brecha de Seguridad en Checkout y Pérdida de Confianza", 
+                    desc: "La pasarela de pago sufrió un ataque. Se extrajeron datos de 500 clientes. Aunque el problema está contenido, la prensa local informa que el sitio es 'inseguro'. Esto afecta directamente el KPI de Tasa de Conversión (KPIs: ${metrics}). Los competidores (${competitors}) están utilizando esto en sus campañas.", 
+                    points: [
+                        "Legal y Cumplimiento: Manejar la notificación legal de fuga de datos (GDPR/Ley local).",
+                        "Marketing y Confianza: Crear una estrategia de comunicación para recuperar la credibilidad del cliente afectado y potencial.",
+                        "Tecnología: Implementar nuevas medidas de seguridad (ej. 3D Secure, auditoría) en un plazo de ${projections}."
+                    ], 
+                    timeframe: "72 horas." 
+                },
+                { 
+                    title: "Caída de Margen por Guerra de Precios", 
+                    desc: "Un competidor directo (${competitors}) bajó sus precios un 15% en tu categoría principal, obligándote a igualar para no perder ventas. Esto reduce tu Margen Bruto al límite y pone en riesgo el Punto de Equilibrio (${breakEven}) y el ROI Esperado (${roi}%).", 
+                    points: [
+                        "Estrategia de Precios: Determinar si la bajada es sostenible o si es mejor enfocar el marketing en la Propuesta de Valor (DVP: ${value}).",
+                        "Finanzas: Revisar la estructura de Costos Totales (${costs}) para buscar eficiencias y proteger el Margen Neto (${netMargin}%).",
+                        "Marketing de Contenido: Fortalecer los Canales Clave (${channels}) con mensajes de valor que justifiquen el precio original."
+                    ], 
+                    timeframe: "1 semana." 
+                },
+                // Añadir más incidentes para tener variedad
+                { 
+                    title: "Regulación Ilegal de Canales Clave", 
+                    desc: "El gobierno del País (${projections}) implementó nuevas regulaciones que prohíben la segmentación por intereses en Meta Ads (Canales Clave: ${channels}), eliminando la mitad de la efectividad de tu Presupuesto Total Anual ($${budget}).", 
+                    points: [
+                        "Estrategia de Medios: Pivotar la inversión publicitaria a canales no afectados (ej. SEO, e-mail marketing).",
+                        "Legal: Determinar el impacto a largo plazo de la nueva regulación en el sector (${tam} TAM) y cómo adaptarte legalmente.",
+                        "Audiencia: Reestructurar la captación de Audiencia Objetivo (${audience}) mediante contenido orgánico y alianzas."
+                    ], 
+                    timeframe: "3 días para el plan de contingencia." 
+                }
             ],
+            // Los demás modelos B2B, SERVICES, DNVB también deberían ser ampliados con placeholders como ejemplo.
             'b2b': [
-                { title: "Concurso de Acreedores", desc: "Tu cliente estrella (40% de facturación) entró en quiebra. Facturas impagas a 90 días y pedido en producción.", action: "Detener producción inmediata y consultar con legales recuperación de deuda." },
-                { title: "Traba en Importaciones", desc: "Licencias de importación para un repuesto crítico bloqueadas por el gobierno por 60 días.", action: "Comunicar a clientes industriales y buscar proveedores locales alternativos aunque sean más caros." },
-                { title: "Error en Especificación", desc: "El lote de 1,000 piezas entregado tiene una tolerancia térmica menor a la prometida. Riesgo de seguridad.", action: "Ejecutar 'Recall' inmediato y asumir costos logísticos inversos totales." },
-                { title: "Intento de Soborno", desc: "El gerente de compras de una gran empresa sugiere una 'comisión personal' del 5% para ganar la licitación.", action: "Rechazar oferta por ética y reportar internamente o retirar la oferta." },
-                { title: "Ruptura de Cadena de Frío", desc: "Transporte subcontratado no respetó protocolos. El cliente rechaza la carga completa en puerta.", action: "Activar seguro de carga y enviar reposición urgente vía transporte premium." }
+                { 
+                    title: "Conflicto con Cliente Clave y Desviación de Presupuesto", 
+                    desc: "Un cliente que representa el 30% de los Ingresos Proyectados ($${revenue}) se niega a pagar la última factura, argumentando que el servicio no cumplió la Norma ISO esperada. La demora afecta gravemente el Punto de Equilibrio (${breakEven}). El Presupuesto Total Anual (${budget}) ya está comprometido.",
+                    points: [
+                        "Negociación y Relaciones Comerciales: Estrategia de mediación con el cliente para asegurar el pago parcial o total.",
+                        "Finanzas y Flujo de Caja: Identificar recortes de Costos Totales (${costs}) para cubrir el hueco de liquidez.",
+                        "Operaciones y Calidad: Auditar internamente el proceso que llevó a la falla de la Norma ISO para evitar futuros incidentes."
+                    ], 
+                    timeframe: "1 semana (5 días hábiles)." 
+                },
+                // ...
             ],
             'services': [
-                { title: "Caída de Servidores (Downtime)", desc: "Tu SaaS está caído hace 4 horas. Usuarios furiosos en Twitter. El SLA garantizaba 99.9%.", action: "Gestión de crisis en RRSS y calcular descuento/crédito en factura por contrato." },
-                { title: "Fuga de Cerebros", desc: "Tu Lead Dev y Senior Account Manager renuncian el mismo día llevándose know-how clave.", action: "Plan de contingencia RRHH y revisión de cláusulas de confidencialidad." },
-                { title: "Filtración de Datos (Breach)", desc: "Hacker publica base de datos de tus usuarios. Correos y contraseñas expuestos.", action: "Notificación legal obligatoria (GDPR), forzar reseteo de contraseñas y auditoría." },
-                { title: "Cliente 'Scope Creep'", desc: "Cliente exige entregables fuera de presupuesto amenazando con no pagar el saldo final.", action: "Defender el contrato original diplomáticamente o negociar adenda comercial." },
-                { title: "Plagio de Propiedad Intelectual", desc: "Tu curso o código se revende ilegalmente en otra web a mitad de precio.", action: "Enviar carta documento 'Cease and Desist' y denunciar links (DMCA)." }
+                { 
+                    title: "Fuga de Talento Crítico y Caída del SLA", 
+                    desc: "Tu Lead Developer renunció para irse con un competidor (${competitors}), llevándose consigo código sensible. Además, el servidor principal cayó durante 6 horas, incumpliendo el SLA prometido. Esto impacta el Margen Neto (${netMargin}%) debido a las compensaciones que se deben realizar.",
+                    points: [
+                        "Recursos Humanos y Legal: Acciones legales por incumplimiento de cláusulas de confidencialidad.",
+                        "Técnico y Operaciones: Implementar una solución de redundancia de servidores a corto plazo y restaurar el servicio.",
+                        "Atención al Cliente: Definir la política de compensación a los clientes por la caída y restablecer la confianza en la Plataforma."
+                    ], 
+                    timeframe: "3 días." 
+                },
+                // ...
             ],
             'dnvb': [
-                { title: "Bloqueo Cuenta Publicitaria", desc: "Meta inhabilitó tu Business Manager por error. El tráfico cayó un 80% de golpe.", action: "Pivotar presupuesto a Influencers/Email y gestionar apelación con soporte." },
-                { title: "Crisis de 'Greenwashing'", desc: "Tiktoker descubre que tus envases 'Sostenibles' no son reciclables. La comunidad se siente traicionada.", action: "Video de disculpa del CEO y plan público de transición de materiales." },
-                { title: "Unboxing Desastroso", desc: "Nuevo proveedor de cajas falló. Clientes suben fotos de productos rotos y cajas aplastadas.", action: "Volver al packaging anterior y enviar 'Kits de disculpas' para recuperar LTV." },
-                { title: "CAC Disparado", desc: "Entró un competidor chino (tipo Temu) y el costo por clic se triplicó. Margen negativo.", action: "Redefinir propuesta de valor (calidad vs precio) y enfocarse en retención." },
-                { title: "El Influencer 'Tóxico'", desc: "Influencer contratado hace comentarios discriminatorios en vivo. Tu marca queda pegada.", action: "Rescindir contrato públicamente y donar el importe a una ONG afectada." }
+                { 
+                    title: "Ataque Reputacional por Competencia y Disparo de CAC", 
+                    desc: "Tu principal competidor (${competitors}) lanzó una campaña masiva de publicidad 'comparativa' en tu país (${projections}), atacando tu 'Greenwashing' (si aplica) o DVP (${value}). Esto ha triplicado el Costo de Adquisición de Cliente (CAC) y pone en riesgo el ROI Esperado (${roi}%).",
+                    points: [
+                        "Relaciones Públicas y Marca: Estrategia de comunicación pública para contrarrestar la campaña negativa sin caer en confrontación.",
+                        "Marketing Digital: Optimizar urgentemente la inversión en Canales Clave (${channels}) para bajar el CAC.",
+                        "Producto y Operaciones: Revisar si el reclamo del competidor tiene base (ej. ¿El DVP es sólido?) y realizar ajustes internos."
+                    ], 
+                    timeframe: "48 horas (Críticas) + 2 semanas (Estrategia)." 
+                },
+                // ...
             ]
         };
 
@@ -293,13 +396,12 @@
             'dnvb': ['Meta Ads', 'Engagement', 'Packaging', 'Nicho', 'Story']
         };
 
-        // Global variable to store Canvas data
         let canvasData = null;
         let currentTicket = "TICKET-0000";
 
         // --- TICKET GENERATION ---
         function generateTicketID(groupId) {
-            const datePart = new Date().toISOString().slice(0, 10).replace(/-/g, ''); // YYYYMMDD
+            const datePart = new Date().toISOString().slice(0, 10).replace(/-/g, '');
             const randomPart = Math.random().toString(36).substring(2, 6).toUpperCase();
             return `TICKET-${groupId.replace(/[^a-zA-Z0-9]/g, '')}-${datePart}-${randomPart}`;
         }
@@ -308,36 +410,50 @@
         function toggleCanvasForm() {
             const content = document.getElementById('canvas-form-content');
             const arrow = document.getElementById('canvas-arrow');
-            
             content.classList.toggle('open');
             arrow.classList.toggle('rotate-180');
         }
 
+        /**
+         * Función DEPURADA: Recoge y valida los datos del Canvas.
+         */
         function saveCanvasData() {
-            const audience = document.getElementById('canvas-audience').value.trim();
-            const value = document.getElementById('canvas-value').value.trim();
-            const channels = document.getElementById('canvas-channels').value.trim();
-            const metrics = document.getElementById('canvas-metrics').value.trim();
+            // 1. Definición de IDs y Recolección de Datos
+            const inputIds = [
+                'audience', 'value', 'channels', 'metrics', 'tam', 'competitors', 'projections',
+                'budget', 'gross-margin', 'net-margin', 'break-even', 'revenue', 'costs', 'roi'
+            ];
+
+            const data = {};
+            inputIds.forEach(key => {
+                const element = document.getElementById(`canvas-${key}`);
+                // Sanitize key name for JSON (e.g., 'gross-margin' -> 'grossMargin')
+                const cleanKey = key.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+                data[cleanKey] = element ? element.value.trim() : '';
+            });
+
             const tutorName = document.getElementById('tutor-name').value.trim();
             const groupId = document.getElementById('group-id').value.trim();
 
-            if (!audience || !value || !channels || !metrics || !tutorName || !groupId) {
-                alert("Por favor, complete todos los campos obligatorios del Canvas y la Configuración (Tutor/Grupo) antes de guardar.");
-                return;
-            }
-
-            canvasData = {
-                audience,
-                value,
-                channels,
-                metrics
-            };
+            // 2. Validación de Campos Críticos (*)
+            if (!tutorName) { alert("¡Alerta! Debe ingresar el Nombre del Tutor/Profesor."); return; }
+            if (!groupId) { alert("¡Alerta! Debe ingresar el Identificador de Grupo."); return; }
+            if (!data.audience) { alert("¡Alerta! Debe ingresar la Audiencia Objetivo (Buyer Persona)."); return; }
+            if (!data.value) { alert("¡Alerta! Debe ingresar la Propuesta de Valor Digital (DVP)."); return; }
             
-            // Generate and display unique ticket ID
+            // Validación Financiera Crítica (Conversión a número para validación)
+            if (!data.budget || isNaN(Number(data.budget))) { alert("¡Alerta! El Presupuesto Total Anual debe ser un número válido."); return; }
+            if (!data.grossMargin || isNaN(Number(data.grossMargin))) { alert("¡Alerta! El Margen Bruto (%) debe ser un número válido."); return; }
+            if (!data.revenue || isNaN(Number(data.revenue))) { alert("¡Alerta! Los Ingresos Proyectados deben ser un número válido."); return; }
+
+
+            // 3. Almacenar Datos Globalmente
+            canvasData = data;
+            
+            // 4. Generar Ticket y Actualizar UI
             currentTicket = generateTicketID(groupId);
             document.getElementById('assigned-ticket').innerText = currentTicket;
 
-            // Update UI status
             document.getElementById('simulate-btn').disabled = false;
             document.getElementById('canvas-status-icon').innerText = '🟢';
             document.getElementById('canvas-status-icon').classList.remove('text-red-500');
@@ -346,31 +462,30 @@
             document.getElementById('save-canvas-btn').classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
             document.getElementById('save-canvas-btn').classList.add('bg-green-600', 'hover:bg-green-700');
             
-            alert("Canvas guardado y simulación habilitada.");
+            alert("Canvas guardado y simulación habilitada. Ahora presione 'EJECUTAR SIMULACIÓN'.");
         }
 
 
         // --- SIMULATION LOGIC ---
 
         function runSimulation() {
-            // 1. Get Values
-            const model = document.getElementById('business-model').value;
             const tutorName = document.getElementById('tutor-name').value.trim();
             const groupId = document.getElementById('group-id').value.trim();
             
-            // Final pre-check
             if (!tutorName || !groupId || !canvasData) {
-                 alert("Complete el Canvas Estratégico, Tutor y Grupo antes de iniciar la simulación.");
+                 // Esto no debería pasar si saveCanvasData funcionó, pero es un buen doble check.
+                 alert("ERROR: La configuración o el Canvas no están completos. Por favor, guarde el Canvas.");
                  return;
             }
 
-            // 2. UI State: Loading
+            // 1. UI State: Loading
             document.getElementById('state-idle').classList.add('hidden');
             document.getElementById('state-result').classList.add('hidden');
             document.getElementById('output-container').classList.remove('crisis-active');
             document.getElementById('state-loading').classList.remove('hidden');
             
-            // 3. Simulate Scanning (Visual Effect)
+            // 2. Simulate Scanning
+            const model = document.getElementById('business-model').value;
             let scanCount = 0;
             const scanInterval = setInterval(() => {
                 const words = keywordsDB[model];
@@ -378,45 +493,106 @@
                 scanCount++;
             }, 250);
 
-            // 4. Generate Result after Delay
+            // 3. Generate Result after Delay
             setTimeout(() => {
                 clearInterval(scanInterval);
                 generateCrisis(model, tutorName, groupId);
-            }, 2500); // 2.5 seconds wait
+            }, 2500);
         }
 
         function generateCrisis(model, tutorName, groupId) {
-            // Get random incident from the specific model array
+            // 1. Get Incident and Code
             const scenarios = incidentsDB[model];
-            const incident = scenarios[Math.floor(Math.random() * scenarios.length)];
+            const incidentTemplate = scenarios[Math.floor(Math.random() * scenarios.length)];
             const code = "ERR-" + Math.floor(Math.random() * 900 + 100);
             
-            // Populate DOM
-            document.getElementById('result-title').innerText = incident.title;
-            document.getElementById('result-desc').innerText = incident.desc;
-            document.getElementById('result-action').innerText = incident.action;
+            // 2. Hydrate Incident details (Replace placeholders in desc)
+            let incidentDesc = incidentTemplate.desc;
+            
+            // Interpolación de variables del Canvas. Ahora los placeholders son ${key}
+            for (const key in canvasData) {
+                const placeholder = new RegExp('\\$\\{' + key + '\\}', 'g');
+                incidentDesc = incidentDesc.replace(placeholder, canvasData[key] || 'N/A');
+            }
+
+            // 3. Populate DOM
+            document.getElementById('result-title').innerText = incidentTemplate.title;
+            document.getElementById('result-desc').innerText = incidentDesc;
+            
+            // 4. Set Timeframe for Resolution
+            document.getElementById('result-action').innerText = 
+                `PLAZO MÁXIMO DE RESPUESTA Y PLAN DE ACCIÓN REQUERIDO: ${incidentTemplate.timeframe}. La falta de respuesta en este periodo agravará la crisis hasta el punto de la inoperatividad.`;
             document.getElementById('result-code').innerText = code;
             
-            // Generate Email Template
-            const emailBody = `Asunto: [URGENTE] INCIDENTE CRÍTICO DETECTADO | ${currentTicket}\n\nEstimado/a ${tutorName || 'Tutor'},\n\nMediante la presente, el Grupo ${groupId || 'sin asignar'} reporta la detección del siguiente Incidente Crítico durante la simulación de Estrategia Digital (${model.toUpperCase()}).\n\n--- CONTEXTO OPERACIONAL (Canvas) ---\nAudiencia Clave: ${canvasData.audience}\nPropuesta de Valor (DVP): ${canvasData.value}\nCanales Primarios: ${canvasData.channels}\nKPIs de Éxito: ${canvasData.metrics}\n\n--- DETALLES DEL INCIDENTE ---\n\nID de Ticket: ${currentTicket}\nModelo de Negocio: ${model.toUpperCase()}\nCódigo de Error: ${code}\n\nTITULO: ${incident.title}\nDESCRIPCIÓN: ${incident.desc}\n\nACCIÓN REQUERIDA INMEDIATA:\n${incident.action}\n\n--- FIN DEL REPORTE ---\n\nQuedamos a la espera de su respuesta para confirmar el Plan de Acción.\n\nAtentamente,\nEquipo de Crisis del Grupo ${groupId || 'sin asignar'}`;
+            // 5. Format financial data for email
+            const currencyFormatter = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
+            
+            // Usamos las keys limpias de canvasData
+            const budgetFormatted = canvasData.budget ? currencyFormatter.format(Number(canvasData.budget)) : 'N/A';
+            const revenueFormatted = canvasData.revenue ? currencyFormatter.format(Number(canvasData.revenue)) : 'N/A';
+            const costsFormatted = canvasData.costs ? currencyFormatter.format(Number(canvasData.costs)) : 'N/A';
+            
+            // 6. Detailed Action Points (The 3 points)
+            const actionPoints = incidentTemplate.points.map(p => `• ${p}`).join('\n');
+
+            // 7. Generate Email Template
+            const emailBody = 
+`Asunto: [ALERTA CRÍTICA] INCIDENTE ${code} ASIGNADO | ${currentTicket}
+Generado por: ${tutorName || 'Tutor no especificado'}
+
+Estimado/a ${tutorName || 'Tutor'},
+
+El Grupo ${groupId || 'sin asignar'} ha sido informado sobre la detección y asignación del siguiente Incidente Crítico.
+
+--- CONTEXTO ESTRATÉGICO Y DE MERCADO ---
+Audiencia Clave: ${canvasData.audience || 'N/A'}
+Propuesta de Valor (DVP): ${canvasData.value || 'N/A'}
+Canales Primarios: ${canvasData.channels || 'N/A'}
+KPIs de Éxito: ${canvasData.metrics || 'N/A'}
+Dimensión TAM/SAM/SOM: ${canvasData.tam || 'N/A'}
+Competidores: ${canvasData.competitors || 'N/A'}
+
+--- CONTEXTO FINANCIERO (Proyectado) ---
+Presupuesto Total Anual: ${budgetFormatted}
+Margen Bruto/Neto: ${canvasData.grossMargin || 'N/A'}% / ${canvasData.netMargin || 'N/A'}%
+Ingresos Proyectados: ${revenueFormatted}
+
+--- DETALLES DEL INCIDENTE ${code} ---
+
+ID de Ticket: ${currentTicket}
+Modelo de Negocio: ${model.toUpperCase()}
+
+TITULO: ${incidentTemplate.title}
+DESCRIPCIÓN DETALLADA: ${incidentDesc}
+
+--- PUNTOS CRÍTICOS A SOLUCIONAR ---
+(El Plan de Acción del Grupo debe abordar estos tres frentes)
+${actionPoints}
+
+--- PLAZO PARA PRESENTAR PLAN ---
+El tiempo máximo para la resolución es de ${incidentTemplate.timeframe}.
+
+--- FIN DEL REPORTE ---
+IMPORTANCIA DE RESOLVER LA CRISIS:
+La rápida y efectiva gestión de esta crisis es fundamental para asegurar la continuidad operativa, proteger el ${canvasData.roi || 'ROI esperado'} y mantener la Propuesta de Valor frente a los ${canvasData.competitors || 'competidores'}. Un fallo en la gestión podría llevar a una pérdida permanente de cuota de mercado y un descenso irreparable en el Margen Neto.
+
+Atentamente,
+Equipo de Crisis del Grupo ${groupId || 'sin asignar'}`;
             
             document.getElementById('email-output').innerText = emailBody;
 
-            // Switch UI State
+            // 8. Switch UI State
             document.getElementById('state-loading').classList.add('hidden');
             document.getElementById('state-result').classList.remove('hidden');
-            
-            // Add Alarm Effect
             document.getElementById('output-container').classList.add('crisis-active');
         }
 
         function resetSimulation() {
-            // Reset UI States
+            // Reset UI States and Data
             document.getElementById('state-result').classList.add('hidden');
             document.getElementById('output-container').classList.remove('crisis-active');
             document.getElementById('state-idle').classList.remove('hidden');
             
-            // Reset Canvas Status
             canvasData = null;
             document.getElementById('simulate-btn').disabled = true;
             document.getElementById('canvas-status-icon').innerText = '🔴';
@@ -426,7 +602,6 @@
             document.getElementById('save-canvas-btn').classList.remove('bg-green-600', 'hover:bg-green-700');
             document.getElementById('save-canvas-btn').classList.add('bg-indigo-600', 'hover:bg-indigo-700');
             
-            // Reset Ticket
             document.getElementById('assigned-ticket').innerText = "TICKET-0000";
             currentTicket = "TICKET-0000";
             document.getElementById('email-output').innerText = "";
@@ -442,9 +617,7 @@
             });
         }
         
-        // Initial setup
         document.addEventListener('DOMContentLoaded', () => {
-             // Ensure canvas is closed on load
              document.getElementById('canvas-form-content').classList.remove('open');
         });
     </script>
